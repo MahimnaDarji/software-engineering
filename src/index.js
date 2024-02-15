@@ -25,6 +25,26 @@ app.get('/add/:n/:m', (req, res) => {
     res.json(sum);
 });
 
+app.get('/subtract/:n/:m', (req, res) => {
+    let n = Number(req.params.n);
+    let m = Number(req.params.m);
+    let difference = n - m;
+    res.json(difference);
+});
+
+app.get('/multiply/:n/:m', (req, res) => {
+    let n = Number(req.params.n);
+    let m = Number(req.params.m);
+    let product = n * m;
+    res.json(product);
+});
+
+app.get('/divide/:n/:m', (req, res) => {
+    let n = Number(req.params.n);
+    let m = Number(req.params.m);
+    let quotient = n / m;
+    res.json(quotient);
+});
 
 app.listen(port, () => {
     console.log('Server is running on port 3000');
