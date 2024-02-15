@@ -1,30 +1,14 @@
 "use strict";
 
 const express = require('express');
+const cors = require('cors');
+const {add} = require('./arithmetica');
 const app = express();
+app.use(cors());
 const port = 3000;
 
 app.get('/', (_, res) => {
-    res.send(`
-        <form onsubmit="event.preventDefault(); getSum()">
-            <input type="number" id="num1">
-            <span>+</span>
-            <input type="number" id="num2">
-            <button type="submit">=</button>
-            <input type="text" id="result" readonly>
-        </form>
-        <script>
-            function getSum() {
-                const num1 = document.getElementById('num1').value;
-                const num2 = document.getElementById('num2').value;
-                fetch('/sum?num1=' + num1 + '&num2=' + num2)
-                    .then(response => response.text())
-                    .then(result => {
-                        document.getElementById('result').value = result;
-                    });
-            }
-        </script>
-    `);
+    res.send('Arithmetic Service');
 });
 
 app.get('/sum', (req, res) => {
@@ -32,6 +16,13 @@ app.get('/sum', (req, res) => {
     const num2 = Number(req.query.num2);
     const sum = num1 + num2;
     res.send(`${sum}`);
+});
+
+app.get('/add/:n/:m', (req, res) => {
+    let n = Number(req.params.n);
+    let m = Number(req.params.m);
+    let sum = add(n, m);
+    res.json(sum);
 });
 
 
