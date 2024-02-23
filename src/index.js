@@ -46,6 +46,20 @@ app.get('/divide/:n/:m', (req, res) => {
     res.json(quotient);
 });
 
+app.get('/prime/:n', (req, res) => {
+    let n = Number(req.params.n);
+    let prime = true;
+    if (n === 1) {
+        prime = false;
+    }
+    for (let i = 2; i < n; i++) {
+        if (n % i === 0) {
+            prime = false;
+        }
+    }
+    res.json(prime);
+});
+
 app.listen(port, () => {
     console.log('Server is running on port 3000');
 });
