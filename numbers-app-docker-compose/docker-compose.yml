@@ -1,0 +1,12 @@
+services:
+  arithmetic-service:
+    image: arithmetic-service
+    build:
+      context: ../arithmetic-service
+      dockerfile: Dockerfile
+    container_name: arithmetic-service
+    ports:
+      - "4000:3000"
+    environment:
+      - PORT=3000
+    restart: "no"
