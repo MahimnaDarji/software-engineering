@@ -1,4 +1,15 @@
 services:
+  mongo-database:
+    image: mongo:7.0.0
+    container_name: mongo-database
+    ports:
+      - "4002:27017"
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+
+
   arithmetic-service:
     image: arithmetic-service
     build:
