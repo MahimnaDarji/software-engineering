@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   mongo-database:
     image: mongo:7.0.0
@@ -9,12 +11,10 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=admin
 
-
   arithmetic-service:
-    image: arithmetic-service
     build:
       context: ../arithmetic-service
-      dockerfile: Dockerfile
+      dockerfile: ../arithmetic-service/Dockerfile
     container_name: arithmetic-service
     ports:
       - "4000:3000"
@@ -23,15 +23,14 @@ services:
     restart: "no"
 
   azure-storage:
-    image: azure-storage
     build:
-      context: ../azure-storage
+      context: ../azure-storage-service
       dockerfile: Dockerfile
     container_name: azure-storage
     ports:
       - "4001:3000"
     environment:
       - PORT=3000
-      - STORAGE_ACCOUNT_NAME=practicums
-      - STORAGE_ACCESS_KEY=your_access_key
+      - STORAGE_ACCOUNT_NAME=mahimnahoneypracticums
+      - STORAGE_ACCESS_KEY=VwxR+yziffxaCk4F6e+q7Gvx1sMVV25A16tMvQcY9IxbDtuCHTTHWZEOBp7XRZQjmrk0XcYkRKhH+AStK4FEmw==
     restart: "no"
